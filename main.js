@@ -26,24 +26,20 @@ function modelLoaded(){
 }
 
 function check() {
-    img = document.getElementById("captured_img").innerHTML;
+    img = document.getElementById("captured_img");
     classifier.classify(img, gotResults);
-    console.log("check()");
 }
 
 function gotResults(error, results) {
-    console.log("35");
     if (error) {
-        console.log("before");
         console.error(error);
-        console.log("after");
     } else {
         console.log(results);
         document.getElementById("result_emotion_name1").innerHTML = results[0].label;
         document.getElementById("result_emotion_name2").innerHTML = results[1].label;
         prediction1 = results[0].label;
         prediction2 = results[1].label;
-        console.log("43");
+
         if(results[0].label == "happy") {
             document.getElementById("update_emoji1").innerHTML = "&#128522;";
         }
@@ -62,7 +58,6 @@ function gotResults(error, results) {
         if(results[1].label == "angry") {
             document.getElementById("update_emoji2").innerHTML = "&#128548;";
         }
-        console.log("62");
         speak();
     }
 }
